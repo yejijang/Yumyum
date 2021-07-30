@@ -58,5 +58,35 @@ public class UsersDAO {
 
 		return null;
 	}
+	
+	//FindidOk(아이디찾기)에서 이름과 휴대폰번호를 넘겨 받아 찾는 아이디가 있는지 확인
+	public UsersDTO findid(UsersDTO dto) {
+		
+		try {
+
+			String sql = "select id from Users where name=? and replace(phone, '-', '')=? and not id in ('admin')";
+
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, dto.getName());
+			pstat.setString(2, dto.getPhone());
+
+			rs = pstat.executeQuery();
+
+			if (rs.next()) {
+				UsersDTO result = new UsersDTO();
+
+				result.setId(rs.getString("id"));
+
+				return result;
+			}
+
+		} catch (Exception e) {
+			System.out.println("UsersDAO.findid()");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 
 }
