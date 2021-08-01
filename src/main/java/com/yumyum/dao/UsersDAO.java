@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.yumyum.DBUtil;
 import com.yumyum.dto.UsersDTO;
@@ -142,5 +143,56 @@ public class UsersDAO {
 		
 		return 0;
 	}
+
+	//Mypage(마이페이지)에서 seq를 넘겨 받아 정보를 조회한다.
+	public UsersDTO getMypage(String seq) {
+
+		try {
+			
+			String sql = "SELECT \r\n"
+					+ "    U.NICKNAME, \r\n"
+					+ "    FN_CUSTOMER_GRADE(U.SEQ) AS GRADE, \r\n"
+					+ "    POINT, \r\n"
+					+ "    P.END_DATE, \r\n"
+					+ "    P.REMAIN_CNT,\r\n"
+					+ "    (SELECT FN_FORMAT_WON(SUM(CHARGE_PRICE)) \r\n"
+					+ "    FROM ORDERLIST\r\n"
+					+ "    WHERE USERS_SEQ = U.SEQ\r\n"
+					+ "    ) AS SUM_PRICE \r\n"
+					+ "FROM USERS U\r\n"
+					+ "LEFT OUTER JOIN CUSTOMER_DELIVERY_PREMIUM P\r\n"
+					+ "ON U.SEQ = P.USERS_SEQ\r\n"
+					+ "AND P.END_DATE >= SYSDATE\r\n"
+					+ "AND P.REMAIN_CNT > 0\r\n"
+					+ "WHERE U.SEQ = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, seq);
+			
+			rs = pstat.executeQuery();
+			
+			if(rs.next()) {
+				
+				UsersDTO dto = new UsersDTO();
+				
+				dto.setNickname(rs.getString("nickname"));
+				dto.setGrade(rs.getString("grade"));
+				dto.setPoint(rs.getString("point"));
+				dto.setPremiumEndDate(rs.getString("end_date"));
+				dto.setPremiumRemainCnt(rs.getString("remain_cnt"));
+				dto.setSumPrice(rs.getString("sum_price"));
+				
+				return dto;
+			}
+			
+		} catch (Exception e) {
+			System.out.println("UsersDAO.getMypage()");
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
 
 }

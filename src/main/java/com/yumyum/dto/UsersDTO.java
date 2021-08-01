@@ -11,6 +11,11 @@ public class UsersDTO {
 	private String phone;
 	private String auth;
 	private String point;
+	
+	private String grade; //소비자 등급
+	private String premiumEndDate; //얌얌혜택 종료일
+	private String premiumRemainCnt; //얌얌혜택 잔여횟수
+	private String sumPrice; //누적 결제금액
 
 	public String getSeq() {
 		return seq;
@@ -83,6 +88,39 @@ public class UsersDTO {
 	public void setPoint(String point) {
 		this.point = point;
 	}
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
+	public String getPremiumEndDate() {
+		return premiumEndDate;
+	}
+
+	public void setPremiumEndDate(String premiumEndDate) {
+		this.premiumEndDate = premiumEndDate;
+	}
+
+	public String getPremiumRemainCnt() {
+		return premiumRemainCnt;
+	}
+
+	public void setPremiumRemainCnt(String premiumRemainCnt) {
+		this.premiumRemainCnt = premiumRemainCnt;
+	}
+
+	public String getSumPrice() {
+		return sumPrice;
+	}
+
+	public void setSumPrice(String sumPrice) {
+		this.sumPrice = sumPrice;
+	}
+	
 
 	/*
 	 * CREATE TABLE USERS ( SEQ NUMBER PRIMARY KEY, -- 사용자번호 NICKNAME VARCHAR2(30),
