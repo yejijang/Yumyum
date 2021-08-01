@@ -87,6 +87,10 @@
 			<c:if test="${not empty id}">
 				<div class="btn-auth"
 					onclick="location.href='/yumyum/auth/logout.do';" title="로그아웃">로그아웃</div>
+				<i class="glyphicon glyphicon-shopping-cart"
+					onclick="location.href='/yumyum/cart.do';"></i>
+				<i class="glyphicon glyphicon-user"
+					onclick="location.href='/yumyum/customer/mypage/mypage.do';"></i>
 			</c:if>
 				
 			<c:if test="${empty id}">
@@ -96,8 +100,7 @@
 					onclick="location.href='/yumyum/auth/auth_select.do';" title="회원가입">회원가입</div>
 				<i class="glyphicon glyphicon-shopping-cart"
 					onclick="location.href='/yumyum/cart.do';"></i>
-				<i class="glyphicon glyphicon-user"
-					onclick="location.href='/yumyum/customer/mypage/mypage.do';"></i>
+				
 			</c:if>
 			
 		</div>
