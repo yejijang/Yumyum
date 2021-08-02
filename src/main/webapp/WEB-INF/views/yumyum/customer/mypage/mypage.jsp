@@ -134,7 +134,7 @@ table th:nth-child(3) { width: 150px; }
                 </ul>
                 <div class="tab-content col-md-9 content-size">
                 	<div class="my-grade" id="btn-align">
-                   		<button class="btn btn-primary">개인정보 수정</button>
+                   		<button class="btn btn-primary" onclick="location.href='/yumyum/customer/mypage/mypage_edit.do';">개인정보 수정</button>
                    	</div>
                     <div class="tab-pane active" id="top">
                     	<div>

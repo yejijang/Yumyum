@@ -121,7 +121,7 @@ form .btns .btn-signup:hover {
 			<div class="btns">
 				<button type="submit" class="btn btn-signup">가입하기</button>
 				<button type="button" class="btn btn-default"
-					onclick="location.href='/myapp/board/list.do';">돌아가기</button>
+					onclick="location.href='/yumyum/auth/auth_select.do';">돌아가기</button>
 			</div>
 
 			<input type="hidden" name="auth" value="${auth}">

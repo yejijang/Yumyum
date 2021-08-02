@@ -235,5 +235,80 @@ public class UsersDAO {
 		}
 		return false;
 	}
+
+	public UsersDTO getMypageEdit(String seq) {
+
+		try {
+			String sql = "SELECT NICKNAME, NAME, ID, EMAIL, PASSWORD, PHONE FROM USERS WHERE SEQ = ?";
+
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, seq);
+			rs = pstat.executeQuery();
+
+			if (rs.next()) {
+
+				UsersDTO dto = new UsersDTO();
+
+				dto.setNickname(rs.getString("nickname"));
+				dto.setName(rs.getString("name"));
+				dto.setId(rs.getString("id"));
+				dto.setEmail(rs.getString("email"));
+				dto.setPassword(rs.getString("password"));
+				dto.setPhone(rs.getString("phone"));
+
+				return dto;
+			}
+
+		} catch (Exception e) {
+			System.out.println("UsersDAO.getMypageEdit()");
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
+
+	public int updateUser(UsersDTO dto) {
+		
+		try {
+			String sql = "UPDATE USERS SET NICKNAME = ?, PASSWORD = ?, PHONE = ?, EMAIL = ? WHERE SEQ = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, dto.getNickname());
+			pstat.setString(2, dto.getPassword());
+			pstat.setString(3, dto.getPhone());
+			pstat.setString(4, dto.getEmail());
+			pstat.setString(5, dto.getSeq());
+			
+			return pstat.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("UsersDAO.updateUser()");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	public int userWithdrawal(String seq) {
+		
+		try {
+			
+			String sql = "DELETE FROM USERS WHERE SEQ = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			
+			return pstat.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("UsersDAO.userWithdrawal()");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
 	
 }
