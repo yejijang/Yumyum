@@ -1,6 +1,7 @@
 package com.yumyum.auth;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,6 +21,8 @@ public class LoginOk extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		resp.setContentType("text/html; charset=UTF-8");
+		
 		String id = req.getParameter("id");
 		String password = req.getParameter("password");
 	
@@ -44,8 +47,13 @@ public class LoginOk extends HttpServlet {
 			
 			resp.sendRedirect("/yumyum/main.do");
 		} else {
-			// 실패
-			resp.sendRedirect("/yumyum/auth/login.do");
+			// 실패했을 경우 alert창 뜨게하기!!!
+			PrintWriter writer = resp.getWriter();
+			writer.print("<script>");
+			writer.print("alert('로그인에 실패했습니다. 다시 시도해주세요.');");
+			writer.print("history.back();");
+			writer.print("</script>");
+			writer.close();
 		}
 	}
 

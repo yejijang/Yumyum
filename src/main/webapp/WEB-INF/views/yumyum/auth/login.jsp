@@ -137,11 +137,12 @@ input {
 
 
 			<div id="btnbox">
-				<input type="button" class="btn" id="findid" value="아이디 찾기"
-					style="width: 90px;"> <input type="button" class="btn"
-					id="findpw" value="비밀번호 찾기" style="width: 100px;"> <input
-					type="button" class="btn" id="signup" value="회원가입"
-					style="width: 70px;">
+				<input type="button" class="btn" onclick="location.href='/yumyum/auth/findid.do';"
+				id="findid" value="아이디 찾기" style="width: 90px;"> 
+				<input type="button" class="btn" onclick="location.href='/yumyum/auth/findpw.do';"
+				id="findpw" value="비밀번호 찾기" style="width: 100px;"> 
+				<input type="button" class="btn" onclick="location.href='/yumyum/auth/signup.do';"
+				id="signup" value="회원가입" style="width: 70px;">
 			</div>
 
 		</div>

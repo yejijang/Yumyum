@@ -69,10 +69,10 @@ public class OrderlistDAO {
 	
 	//shop.do에서 사용자번호로 리뷰작성자의 주문메뉴를 찾아주세요
 	public ArrayList<Order_menuDTO> getOrderlistDAO(String seq) {
-		
-		
+
+
 		try {
-			
+
 			String sql = "select \r\n"
 					+ "r.seq as review_seq, \r\n"
 					+ "m.name as menu_name, \r\n"
@@ -84,36 +84,36 @@ public class OrderlistDAO {
 					+ "left outer join menu_option mo on mo.seq = om.menu_option_seq\r\n"
 					+ "where r.shop_seq = ?\r\n"
 					+ "order by r.seq";
-			
+
 			pstat = conn.prepareStatement(sql);
-			
+
 			pstat.setString(1, seq);
-			
+
 			rs = pstat.executeQuery();
-			
+
 			ArrayList<Order_menuDTO> omlist = new ArrayList<Order_menuDTO>();
-			
+
 			while (rs.next()) {
-				
+
 				Order_menuDTO dto = new Order_menuDTO();
-				
+
 				dto.setReview_seq(rs.getString("review_seq"));
 				dto.setMenu_name(rs.getString("menu_name"));
 				dto.setOption_name(rs.getString("option_name"));
-				
+
 				omlist.add(dto);
 			}
-			
+
 			return omlist;
-			
+
 		} catch (Exception e) {
 			System.out.println("OrderlistDAO.getOrderlistDAO()");
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
-
+	
 	public ArrayList<OrderlistDTO> getOrderlist(String seq, String begin, String end) {
 
 		try {

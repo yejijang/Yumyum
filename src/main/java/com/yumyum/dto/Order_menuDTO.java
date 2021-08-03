@@ -11,7 +11,7 @@ public class Order_menuDTO {
 	private String menu_name; // 메뉴명(주문내역상세보기)
 	private String menu_picture; // 메뉴사진
 	private String option_name; // 옵션명
-	
+
 	private String review_seq; //리뷰번호
 
 
