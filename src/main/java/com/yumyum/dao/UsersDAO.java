@@ -311,4 +311,34 @@ public class UsersDAO {
 		return 0;
 	}
 	
+
+	//shop.do에서 가게seq로 점주의 이름을 요청해요.
+	public UsersDTO getShopUser(String seq) {
+		
+		try {
+			String sql = "select  u.seq as seq, u.name as name from Users u\r\n"
+					+ "inner join Shop s on u.seq=s.Users_seq and s.seq = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, seq);
+			
+			rs = pstat.executeQuery();
+
+			if (rs.next()) {
+				
+				UsersDTO dto = new UsersDTO();
+				
+				dto.setName(rs.getString("name"));
+				dto.setSeq(rs.getString("seq"));
+				
+				return dto;
+			}
+		} catch (Exception e) {
+			System.out.println("UsersDAO.getShopUser()");
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 }
