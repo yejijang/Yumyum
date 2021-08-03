@@ -15,27 +15,23 @@ import com.yumyum.dao.OrderlistDAO;
 import com.yumyum.dto.Order_menuDTO;
 import com.yumyum.dto.OrderlistDTO;
 
-@WebServlet("/customer/orderlist/cus_orderlist_detail.do")
-public class Cus_orderlist_detail extends HttpServlet {
+@WebServlet("/customer/orderlist/cus_orderlist_del.do")
+public class Cus_orderlist_del extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		HttpSession session = req.getSession();
-		String userSeq = session.getAttribute("seq").toString();
-		
-		String orderlistSeq = req.getParameter("seq");
+		String seq = req.getParameter("seq");
 		
 		OrderlistDAO dao = new OrderlistDAO();
 		
-		ArrayList<OrderlistDTO> infoList = dao.getOrderInfo(orderlistSeq);
-		ArrayList<Order_menuDTO> menuList = dao.getOrdermenu(userSeq);
-		
-		req.setAttribute("infoList", infoList);
-		req.setAttribute("menuList", menuList);
-		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/yumyum/customer/orderlist/cus_orderlist_detail.jsp");
-		dispatcher.forward(req, resp);
+		int result = dao.delOrderlist(seq);
+
+		if (result == 1) {
+			resp.sendRedirect("/yumyum/customer/orderlist/cus_orderlist.do");
+		} else {
+			resp.sendRedirect("/yumyum/customer/orderlist/cus_orderlist.do");
+		}
 
 	}
 

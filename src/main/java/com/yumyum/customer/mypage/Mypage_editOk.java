@@ -30,9 +30,9 @@ public class Mypage_editOk extends HttpServlet {
 		int result = dao.updateUser(dto);
 
 		if (result == 1) {
-			resp.sendRedirect("/yumyum/customer/mypage/mypage.do");
+			resp.sendRedirect("/yumyum/customer/orderlist/cus_orderlist.do");
 		} else {
-			resp.sendRedirect("/yumyum/customer/mypage/mypage_edit.do");
+			resp.sendRedirect("/yumyum/customer/orderlist/cus_orderlist.do");
 		}
 
 	}

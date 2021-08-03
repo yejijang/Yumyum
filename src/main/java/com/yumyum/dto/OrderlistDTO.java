@@ -23,6 +23,13 @@ public class OrderlistDTO {
 	private String name; //카테고리명(마이페이지)
 	private String cnt; //카테고리별 주문 수
 	
+	private String shop_name; // 가게명(주문내역)
+	private String shop_picture; // 가게사진
+	
+	private String cancel_reason; // 취소사유(주문상세내역)
+	private String user_phone; // 소비자 번호
+	private String shop_tip; // 기본배달팁
+	
 	public String getSeq() {
 		return seq;
 	}
@@ -136,6 +143,36 @@ public class OrderlistDTO {
 	}
 	public void setCnt(String cnt) {
 		this.cnt = cnt;
+	}
+	public String getShop_name() {
+		return shop_name;
+	}
+	public void setShop_name(String shop_name) {
+		this.shop_name = shop_name;
+	}
+	public String getShop_picture() {
+		return shop_picture;
+	}
+	public void setShop_picture(String shop_picture) {
+		this.shop_picture = shop_picture;
+	}
+	public String getCancel_reason() {
+		return cancel_reason;
+	}
+	public void setCancel_reason(String cancel_reason) {
+		this.cancel_reason = cancel_reason;
+	}
+	public String getUser_phone() {
+		return user_phone;
+	}
+	public void setUser_phone(String user_phone) {
+		this.user_phone = user_phone;
+	}
+	public String getShop_tip() {
+		return shop_tip;
+	}
+	public void setShop_tip(String shop_tip) {
+		this.shop_tip = shop_tip;
 	}
 	
 }
