@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
+import com.yumyum.CheckLocation;
 import com.yumyum.DBUtil;
 import com.yumyum.dto.ShopDTO;
 
@@ -81,4 +83,72 @@ public class ShopDAO {
 
 		return null;
 	}
+	
+	
+	//사진, 가게명, 가게설명, 평점, 최소주문금액, 이벤트
+	//Category(카테고리)에서 seq를 넘겨 받아 사용 가능 카테고리를 조회한다.
+	public ArrayList<ShopDTO> getListshop(String seq, String lon, String lat) {
+
+		try {
+			
+			String sql = "SELECT S.SEQ, S.NAME, S.EXPLANATION, S.PICTURE, FN_FORMAT_WON(S.MIN_PRICE) AS MIN_PRICE,"
+					+ " NVL(R.AVG_SCORE, 0) AS AVG_SCORE, NVL2(RN.SEQ, 'Y', 'N') AS EVENT_FLAG, S.ADDRESS\r\n"
+					+ "FROM SHOP S\r\n"
+					+ "LEFT OUTER JOIN \r\n"
+					+ "    (SELECT SHOP_SEQ, ROUND(AVG(SCORE), 1) AVG_SCORE\r\n"
+					+ "    FROM REVIEW R\r\n"
+					+ "    GROUP BY SHOP_SEQ) R \r\n"
+					+ "ON S.SEQ = R.SHOP_SEQ\r\n"
+					+ "LEFT OUTER JOIN REVIEW_NOTICE RN\r\n"
+					+ "ON S.SEQ = RN.SHOP_SEQ\r\n"
+					+ "AND RN.END_DATE >= SYSDATE\r\n"
+					+ "WHERE S.CATEGORY_SEQ = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			
+			rs = pstat.executeQuery();
+			
+			ArrayList<ShopDTO> list = new ArrayList<ShopDTO>();
+			CheckLocation cl = new CheckLocation();
+			
+			while(rs.next()) {
+				
+				ShopDTO location = cl.getLocation(rs.getString("address"));
+				
+				if(location != null) {
+					
+					double distance = cl.getDistance(lon, lat, location.getLon(), location.getLat());
+					
+					ShopDTO dto = new ShopDTO();
+					
+					dto.setSeq(rs.getString("seq"));
+					dto.setName(rs.getString("name"));
+					dto.setExplanation(rs.getString("explanation"));
+					dto.setPicture(rs.getString("picture"));
+					dto.setMin_price(rs.getString("min_price"));
+					dto.setAvg_score(rs.getString("avg_score"));
+					dto.setEvent_flag(rs.getString("event_flag"));
+					
+					//5km이내에 있는 가게들 출력
+					if(distance <= 5) {
+						list.add(dto);
+					} else {
+						System.out.println(rs.getString("name"));
+						System.out.println(distance);
+					}
+				}
+			}
+			
+			return list;
+			
+		} catch (Exception e) {
+			System.out.println("ShopDAO.getListshop()");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	
 }

@@ -434,7 +434,7 @@ legend {
 
 	<section class="main-section">
 	<h1 class="page-header">${shopdto.category}</h1> 
-		
+		<input type="hidden" name="address" id="address">
 <!-- 가게설명 -->
 		<div class="item-content-set01" style="display: inline-block;">
 			<div class="item-card row">
@@ -774,6 +774,7 @@ legend {
 			resultElement.innerText = number;
 		}
 		
+		$('#address').val('${address}');
 		
 	</script>
 </body>

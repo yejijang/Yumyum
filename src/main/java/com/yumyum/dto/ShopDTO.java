@@ -23,6 +23,12 @@ public class ShopDTO {
 	
 	private String category;
 	
+	private String avg_score;
+	private String event_flag;
+	   
+	private String lon;
+	private String lat;
+	
 	
 	public String getCategory() {
 		return category;
@@ -138,7 +144,31 @@ public class ShopDTO {
 	public void setTake_state(String take_state) {
 		this.take_state = take_state;
 	}
-	
+	public String getAvg_score() {
+		return avg_score;
+	}
+	public void setAvg_score(String avg_score) {
+		this.avg_score = avg_score;
+	}
+	public String getEvent_flag() {
+		return event_flag;
+	}
+	public void setEvent_flag(String event_flag) {
+		this.event_flag = event_flag;
+	}
+   
+	public String getLon() {
+		return lon;
+	}
+	public void setLon(String lon) {
+		this.lon = lon;
+	}
+	public String getLat() {
+		return lat;
+	}
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
 	
 
 }
