@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.yumyum.CheckLocation;
 import com.yumyum.DBUtil;
@@ -86,42 +87,39 @@ public class ShopDAO {
 	
 	
 	//사진, 가게명, 가게설명, 평점, 최소주문금액, 이벤트
-	//Category(카테고리)에서 seq를 넘겨 받아 사용 가능 카테고리를 조회한다.
-	public ArrayList<ShopDTO> getListshop(String seq, String lon, String lat) {
+	//Shoplist에서 받은 값들로 가게를 조회한다.
+	public ArrayList<ShopDTO> getListshop(HashMap<String, String> map) {
 
 		try {
+
+			String where = "";
 			
-			String sql = "SELECT S.SEQ, S.NAME, S.EXPLANATION, S.PICTURE, FN_FORMAT_WON(S.MIN_PRICE) AS MIN_PRICE,"
-					+ " NVL(R.AVG_SCORE, 0) AS AVG_SCORE, NVL2(RN.SEQ, 'Y', 'N') AS EVENT_FLAG, S.ADDRESS\r\n"
-					+ "FROM SHOP S\r\n"
-					+ "LEFT OUTER JOIN \r\n"
-					+ "    (SELECT SHOP_SEQ, ROUND(AVG(SCORE), 1) AVG_SCORE\r\n"
-					+ "    FROM REVIEW R\r\n"
-					+ "    GROUP BY SHOP_SEQ) R \r\n"
-					+ "ON S.SEQ = R.SHOP_SEQ\r\n"
-					+ "LEFT OUTER JOIN REVIEW_NOTICE RN\r\n"
-					+ "ON S.SEQ = RN.SHOP_SEQ\r\n"
-					+ "AND RN.END_DATE >= SYSDATE\r\n"
-					+ "WHERE S.CATEGORY_SEQ = ?";
+			//검색일 경우
+			if(map.get("isSearch").equals("y")) {
+				where = String.format(" AND NAME LIKE '%%%s%%' ", map.get("searchWord"));
+			}
+			
+			String sql = String.format("SELECT * FROM VW_SHOP_LIST WHERE CATEGORY_SEQ = %s %s ", map.get("seq"), where);
 			
 			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, seq);
 			
 			rs = pstat.executeQuery();
 			
-			ArrayList<ShopDTO> list = new ArrayList<ShopDTO>();
+			ArrayList<ShopDTO> list = new ArrayList<ShopDTO>(); //옮겨 담을 큰 상자
 			CheckLocation cl = new CheckLocation();
 			
 			while(rs.next()) {
 				
+				//DB에 저장된 가게들의 주소로 좌표(위도, 경도)를 받아 온다.
 				ShopDTO location = cl.getLocation(rs.getString("address"));
 				
 				if(location != null) {
 					
-					double distance = cl.getDistance(lon, lat, location.getLon(), location.getLat());
+					//소비자의 좌표와 DB에 저장된 가게들의 좌표를 통해 둘 사이의 거리를 계산하여 KM로 리턴 받는다. 
+					double distance = cl.getDistance(map.get("lon"), map.get("lat"), location.getLon(), location.getLat());
 					
 					ShopDTO dto = new ShopDTO();
-					
+				
 					dto.setSeq(rs.getString("seq"));
 					dto.setName(rs.getString("name"));
 					dto.setExplanation(rs.getString("explanation"));
@@ -130,13 +128,15 @@ public class ShopDAO {
 					dto.setAvg_score(rs.getString("avg_score"));
 					dto.setEvent_flag(rs.getString("event_flag"));
 					
-					//5km이내에 있는 가게들 출력
+					//5km 이내에 있는 가게들만 리스트에 담는다.
 					if(distance <= 5) {
 						list.add(dto);
 					} else {
 						System.out.println(rs.getString("name"));
 						System.out.println(distance);
+						System.out.println();
 					}
+					
 				}
 			}
 			

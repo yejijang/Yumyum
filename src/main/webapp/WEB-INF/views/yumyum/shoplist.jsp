@@ -46,6 +46,14 @@
 	margin: 0px auto;
 }
 
+.item-no {
+	width: 600px;
+	height: 120px;
+	margin: 0px auto;
+	text-align: center;
+	font-size: 20px;
+}
+
 .card01 {
 	margin-top: 5px;
 }
@@ -140,7 +148,6 @@ form {
 
 	<%@ include file="/inc/header.jsp"%>
 
-	<input type="hidden" id="address" name="address">
 	<div class="container-custom">
 		<div class="category">
 			<ul class="nav nav-tabs nav-menu">
@@ -185,7 +192,9 @@ form {
 			<form method="get" action="/yumyum/shoplist.do">
 				<div class="search">
 					<input type="text" class="form-control pull-right"
-						placeholder="가게명을 입력하세요." name="searchWord" />
+						placeholder="가게명을 입력하세요." name="searchWord" id="searchWord"/>
+					<input type="hidden" id="address" name="address" value="${address}">
+					<input type="hidden" id="category" name="category" value="${map.seq}">
 					<input type="submit" class="btn btn-primary" value="검색">
 				</div>
 			</form>
@@ -194,7 +203,15 @@ form {
 	
 	<div class="container">
 		<h1 class="page-header"></h1>
-
+		
+		<c:if test="${list.size() == 0 }">
+		<div class="middle-column">
+			<div class="item-no card01">
+				검색 결과가 없습니다.
+			</div>
+		</div>
+		</c:if>
+		
 		<c:forEach items="${list}" var="dto">
 		<div class="middle-column">	
 			<div class="item-card card01">
@@ -236,8 +253,10 @@ form {
 	</div>
 
 	<script>
-	
-		$('#address').val('${address}');
+		
+		<c:if test="${map.isSearch.equals('y')}">
+			$('#searchWord').val('${map.searchWord}');
+		</c:if>
 		
 		$('a').click(function () {
 			

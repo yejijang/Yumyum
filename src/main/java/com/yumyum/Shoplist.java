@@ -2,6 +2,7 @@ package com.yumyum;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,19 +23,36 @@ public class Shoplist extends HttpServlet {
 
 		String seq = req.getParameter("category");
 		String address = req.getParameter("address");
+		String searchWord = req.getParameter("searchWord"); //검색어
+		
+		String isSearch = "n"; //검색여부
+		
+		//검색이면 y
+		if(searchWord != null && !searchWord.equals("")) {
+			isSearch = "y";
+		}
 		
 		ShopDAO dao = new ShopDAO();
 		
 		CheckLocation cl = new CheckLocation();
 		
-		//주소를 전달하여 좌표를 받아 온다.
+		//소비자가 입력(설정)한 주소를 전달하여 좌표를 받아 온다.
 		ShopDTO location = cl.getLocation(address);
 		
-		//해당가게들을 받아 온다.
-		ArrayList<ShopDTO> list = dao.getListshop(seq, location.getLon(), location.getLat());
+		//조회할 정보들을 해시맵에 담는다.
+		HashMap<String, String> map = new HashMap<String, String>();
 		
+		map.put("seq", seq);
+		map.put("lon", location.getLon());
+		map.put("lat", location.getLat());
+		map.put("searchWord", searchWord);
+		map.put("isSearch", isSearch);
+		
+		//가게 목록을 받아 온다.
+		ArrayList<ShopDTO> list = dao.getListshop(map);
 		
 		req.setAttribute("list", list);
+		req.setAttribute("map", map);
 		req.setAttribute("address", address);
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/yumyum/shoplist.jsp");
