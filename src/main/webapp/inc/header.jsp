@@ -72,11 +72,11 @@
 						<li class="mainbtn"
 							onclick="location.href='/yumyum/admin/event/eventlist.do';"
 							title="eventlist" id="/yumyum/admin/event/eventlist.do">이벤트관리</li>
-						<li class="mainbtn"
+						<li class="mainbtn"  style="width:150px;"
 							onclick="location.href='/yumyum/admin/question/questionlist.do';"
 							title="questionlist" id="/yumyum/admin/question/questionlist.do">
 							자주묻는질문관리</li>
-						<li class="mainbtn"
+						<li class="mainbtn"  style="width:100px;"
 							onclick="location.href='/yumyum/admin/notice/noticelist.do';"
 							title="noticelist" id="/yumyum/admin/notice/noticelist.do">공지사항관리</li>
 					</ul>
