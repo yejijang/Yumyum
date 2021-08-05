@@ -22,7 +22,6 @@ import com.yumyum.dao.ShopDAO;
 import com.yumyum.dao.UsersDAO;
 import com.yumyum.dto.MenuDTO;
 import com.yumyum.dto.Menu_groupDTO;
-import com.yumyum.dto.Menu_optionDTO;
 import com.yumyum.dto.Order_menuDTO;
 import com.yumyum.dto.Plus_priceDTO;
 import com.yumyum.dto.ReviewDTO;
@@ -95,8 +94,9 @@ public class Shop extends HttpServlet {
 		req.setAttribute("omlist", omlist);
 		
 		req.setAttribute("address", address);
+
 		req.setAttribute("menuseq", menuseq);
-		
+
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/yumyum/shop.jsp");
 		dispatcher.forward(req, resp);
 

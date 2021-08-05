@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 
+import com.yumyum.CheckLocation;
 import com.yumyum.DBUtil;
 import com.yumyum.dto.ShopDTO;
 
@@ -81,4 +84,71 @@ public class ShopDAO {
 
 		return null;
 	}
+	
+	
+	//사진, 가게명, 가게설명, 평점, 최소주문금액, 이벤트
+	//Shoplist에서 받은 값들로 가게를 조회한다.
+	public ArrayList<ShopDTO> getListshop(HashMap<String, String> map) {
+
+		try {
+
+			String where = "";
+			
+			//검색일 경우
+			if(map.get("isSearch").equals("y")) {
+				where = String.format(" AND NAME LIKE '%%%s%%' ", map.get("searchWord"));
+			}
+			
+			String sql = String.format("SELECT * FROM VW_SHOP_LIST WHERE CATEGORY_SEQ = %s %s ", map.get("seq"), where);
+			
+			pstat = conn.prepareStatement(sql);
+			
+			rs = pstat.executeQuery();
+			
+			ArrayList<ShopDTO> list = new ArrayList<ShopDTO>(); //옮겨 담을 큰 상자
+			CheckLocation cl = new CheckLocation();
+			
+			while(rs.next()) {
+				
+				//DB에 저장된 가게들의 주소로 좌표(위도, 경도)를 받아 온다.
+				ShopDTO location = cl.getLocation(rs.getString("address"));
+				
+				if(location != null) {
+					
+					//소비자의 좌표와 DB에 저장된 가게들의 좌표를 통해 둘 사이의 거리를 계산하여 KM로 리턴 받는다. 
+					double distance = cl.getDistance(map.get("lon"), map.get("lat"), location.getLon(), location.getLat());
+					
+					ShopDTO dto = new ShopDTO();
+				
+					dto.setSeq(rs.getString("seq"));
+					dto.setName(rs.getString("name"));
+					dto.setExplanation(rs.getString("explanation"));
+					dto.setPicture(rs.getString("picture"));
+					dto.setMin_price(rs.getString("min_price"));
+					dto.setAvg_score(rs.getString("avg_score"));
+					dto.setEvent_flag(rs.getString("event_flag"));
+					
+					//5km 이내에 있는 가게들만 리스트에 담는다.
+					if(distance <= 5) {
+						list.add(dto);
+					} else {
+						System.out.println(rs.getString("name"));
+						System.out.println(distance);
+						System.out.println();
+					}
+					
+				}
+			}
+			
+			return list;
+			
+		} catch (Exception e) {
+			System.out.println("ShopDAO.getListshop()");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	
 }

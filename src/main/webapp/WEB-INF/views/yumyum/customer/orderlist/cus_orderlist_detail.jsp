@@ -114,7 +114,7 @@ table {
 					<li><a href="/yumyum/customer/mypage/mypage.do">My
 							Page</a></li>
 					<li class="active"><a href="/yumyum/customer/orderlist/cus_orderlist.do">주문내역</a></li>
-					<li><a href="/yumyum/customer/customerservice/cs_question.do">고객센터</a></li>
+					<li><a href="/yumyum/customer/customerservice/cs_question.do?cs_subject_seq=6">고객센터</a></li>
 					<li><a href="/yumyum/customer/bookmark.do">즐겨찾는가게</a></li>
 				</ul>
 				<div class="tab-content col-md-9 content-size">
