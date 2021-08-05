@@ -17,7 +17,7 @@
 <header class="main-header">
 	<section>
 		<span id="main_logo" onclick="location.href='/yumyum/main.do';">
-			<img src="/yumyum/images/logo.png">
+			<img src="/yumyum/images/logo.png" style="cursor: pointer;">
 		</span>
 		<nav>
 			<c:if test="${empty id||auth eq 'C'}">
@@ -50,7 +50,7 @@
 							onclick="location.href='/yumyum/owner/menu/menulist.do';"
 							title="menulist" id="/yumyum/owner/menu/menulist.do">메뉴관리</li>
 						<li class="mainbtn"
-							onclick="location.href='/yumyum/order/own_orderlist.do';"
+							onclick="location.href='/yumyum/owner/order/own_orderlist.do';"
 							title="orderlist" id="/yumyum/owner/order/own_orderlist.do">주문관리</li>
 						<li class="mainbtn"
 							onclick="location.href='/yumyum/owner/review/reviewevent.do';"
@@ -74,7 +74,8 @@
 							title="eventlist" id="/yumyum/admin/event/eventlist.do">이벤트관리</li>
 						<li class="mainbtn"
 							onclick="location.href='/yumyum/admin/question/questionlist.do';"
-							title="questionlist" id="/yumyum/admin/question/questionlist.do">자주묻는질문관리</li>
+							title="questionlist" id="/yumyum/admin/question/questionlist.do">
+							자주묻는질문관리</li>
 						<li class="mainbtn"
 							onclick="location.href='/yumyum/admin/notice/noticelist.do';"
 							title="noticelist" id="/yumyum/admin/notice/noticelist.do">공지사항관리</li>

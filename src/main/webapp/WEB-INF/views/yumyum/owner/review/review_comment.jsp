@@ -19,7 +19,7 @@
 	
 	
 	<div class="container">
-		<h1 class="page-header"></h1>
+		<h1 class="page-header">리뷰 답변 페이지입니다.</h1>
 	</div>
 	
 	

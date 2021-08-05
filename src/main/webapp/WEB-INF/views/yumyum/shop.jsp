@@ -47,7 +47,7 @@
 }
 
 #main {
-	width: 550px;
+	width: 700px;
 	border: 3px solid gray;
 	font-size: 20px;
 	color: #444;
@@ -106,7 +106,7 @@ input[type=radio]:checked+label {
 }
 
 .list-group-item {
-	width: 500px;
+	width: 640px;
 }
 
 #noticeinfo h2 {
@@ -163,7 +163,7 @@ input[type=radio]:checked+label {
 }
 .food-image-set {
     position: absolute;
-    left: 400px;
+    left: 500px;
 }
 .list-group>a:hover {
     background-color: #f5f5f5;
@@ -177,7 +177,6 @@ padding-top:-20px;
  }
 .item-card-main {
 	border:0px solid black;
-/*     margin-top: 30px; */
     display:flex;
    
 }
@@ -190,7 +189,6 @@ padding-top:-20px;
 .item-card-info {
 	width: 380px;
 	border:0px solid red;
-/* 	margin-top: 20px; */
 	margin-left: 15px;
 }
 .item-card-info > p {
@@ -200,7 +198,6 @@ padding-top:-20px;
 }
 .pblack {
     color: #000000!important;
-   /*  padding-top: 20px; */
 }
 
 .item-title {
@@ -227,9 +224,6 @@ padding-top:-20px;
     margin-left: 5px;
 }
 
-.list01 {
-
-}
 .list01>p {
     margin-bottom: -5px;
 }
@@ -248,65 +242,12 @@ padding-top:-20px;
     border-right: 0px;
     cursor: default;
 }
-#basket {
-	width: 230px;
-	height: 500px;
-	float:right;
-	border: 0px solid red;
-}
 
-.basket-header {
-    width: 230px;
-    background-color: #8DC5AA;
-    text-align: left;
-    padding: 5px;
-}
-.basket-body {
-    width: 230px;
-    height: 200px;
-    border: 1px solid #d3d3d3;
-    border-top: 0px;
-    padding: 10px;
-    
-}
-.basket-sum {
-    width: 230px;
-    height: 50px;
-    background-color: #f2f2f2;
-    border: 1px solid #d3d3d3;
-    border-top: 0px;
-}
-.basket-sum>p {
-    margin-bottom: 0px;
-    text-align: right;
-    margin-right: 10px;
-    line-height: 50px;
-    color: #f00000;
-}
 .btn-set01 {
     width: 230px;
     margin-top: 5px;
 }
 
-.td1 {
-    color: #20c3c3;
-}
-.review-write-align {
-    height: 30px;
-}
-.review-write {
-    position: absolute;
-    left: 525px;
-}
-.review-align {
-    text-align: center;
-}
-.review-align>p {
-    text-align: right;
-}
-.review-info-grid {
- 
-}
 .review-info-grid>h4 {
     position: relative;
     top: 3px;
@@ -365,7 +306,7 @@ legend {
 	margin-left:0px;
 	padding-top:10px;
 	padding-bottom:20px;
-	width:530px;
+	width:670px;
 	list-style: none;
 	border-radius:5px;
 	background-color:RGBA(247,239,184,1);
@@ -402,21 +343,88 @@ legend {
 }
 
 /* Modal */
+
+.table {
+	width: 100%;
+}
+
+.table tr td {
+	width: 50%;
+	font-size: 12px;
+}
+
+.table tr td:nth-child(2) {
+	text-align: right;
+	margin-right: 10px;
+}
+
+#main .table tr td label {
+	width: 100%;
+	font-size: 13px;
+	padding: 0px;
+	text-align: left;
+	margin-left: 10px;
+}
+
+#main .table tr td label input {
+	margin-right: 10px;
+	margin-top: -1px;
+  	vertical-align: middle;
+}
+
 .modal-body {
-    padding: 30px!important;
+	padding: 0px;
 }
-.alert-second {
-    font-size: 12px;
+
+.modal-body .menu_picture {
+	width: 200px;
+	height: 200px;
+	border: 1px solid black;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	text-align: center;
+	vertical-align: middle;
 }
-.modal-header>h4 {
-	font-size: 20px;
-	color: #4CAF50;
+
+.modal-body .menu_name,
+.modal-body .menu_explanation,
+.modal-body .menu_quantity {
+	text-align: center;
+}
+
+.modal-body .menu_explanation,
+.modal-body .menu_quantity {
+	font-size: 14px;
+}
+
+.modal-body .menu_quantity {
+	margin-bottom: 30px;
+}
+
+.modal-body .menu_quantity input {
+	width: 40px;
+}
+
+.item-content-set01 .modal-content {
+	margin-top: 50px;
+}
+
+.modal-content .modal-footer {
+	text-align: center;
+	display: block;
+	margin-bottom: 20px;
+}
+
+.item-content-set01 {
+	width: 800px;
+	
+}
+
+.item-content-set01 div {
+	margin: 0 auto;
 }
 
 </style>
-
-
-<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 
 <script>
 	$(document).ready(function() {
@@ -429,8 +437,6 @@ legend {
 </head>
 <body>
 	<%@ include file="/inc/header.jsp"%>
-
-	
 
 	<section class="main-section">
 	<h1 class="page-header">${shopdto.category}</h1> 
@@ -482,15 +488,16 @@ legend {
 									<ul class="hide">
 										<c:forEach items="${mlist}" var="dto2">
 											<c:if test="${dto.seq == dto2.menu_group_seq}">
-												<li><a href="#" data-toggle="modal" data-target="#orderModal" class="list-group-item" id="menuoption"> ${dto2.name}&nbsp;&nbsp; 
-													<span class="pset01">${dto2.price}원</span> 
+												<li class="menu" data-shopseq="${shopdto.seq}" data-menuseq="${dto2.seq}"><a class="list-group-item" id="menuoption"> ${dto2.name}&nbsp;&nbsp; 
+													<span class="pset01">${dto2.price}원</span>
 														<span class="food-image-set">
 														<img src="/yumyum/images/logo.png" width="80">
 														</span>
 												</a></li>
 											</c:if>
 										</c:forEach>
-									</ul></li>
+									</ul>
+								</li>
 							</ul>
 						</c:forEach>
 					</div>
@@ -502,33 +509,30 @@ legend {
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h4 class="modal-title" id="myModalLabel">메뉴선택</h4>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
 							</div>
-							<div class="modal-body">
-
-								<div class="list01">
-									<p class="item-list-section item-list-section01">메뉴이름</p>
-									<div class="item-list-section item-list-section02">
-										<i class="material-icons icon-set02">cancel</i>메뉴금액 원
-										<div class="btn-group item-count" role="group"
-											aria-label="Basic example">
-											<button class="bt bt01 up">-</button>
-											<button class="bt bt-count">1</button>
-											<button class="bt bt02 down">+</button>
+							<form method="post" action="/yumyum/cart_add.do" name="cart" onsubmit="return check()">
+								<div class="modal-body">
+									<div class="list01">
+										<div class="item-list-section item-list-section01">
+											<div id="modal-menuinfo"></div>
+											<div class="menu_quantity">수량: <input type="number" name="quantity" min="1" value="1"> 개</div>
+										</div>
+										<div class="item-list-section item-list-section02">
+											<table id="test" class="table">
+												<tbody></tbody>
+											</table>
 										</div>
 									</div>
 								</div>
-
-
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-outline-success"
-									onclick="delPwChk()">장바구니담기</button>
-							</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+									<button type="submit" class="btn btn-outline-success">장바구니담기</button>
+								</div>
+								<input type="hidden" name="shop_seq" value="${shopdto.seq}">
+								<input type="hidden" name="menu_seq" id="menu_seq">
+								<input type="hidden" name="users_seq" value="${seq}">
+								<input type="hidden" name="menu_option_seq" id="menu_option_seq">
+							</form>
 						</div>
 					</div>
 				</div>
@@ -632,116 +636,18 @@ legend {
 						<p>사업자 등록번호 : ${shopdto.registration}</p>
 					</div>
 				</div>
-
 <!-- 가게끝 -->
 			</div>
 			<!-- <div id="main"> -->
 		</div>
 		<!-- <div class="item-content-set01"> -->
-		
-<!-- 장바구니 -->
-		<div id="basket">
-			<div class="basket-header">
-				<strong>장바구니</strong>
-			</div>
-			<div class="basket-body">
-				<div class="list01">
-					<p class="item-list-section item-list-section01">후라이드 치킨</p>
-					<div class="item-list-section item-list-section02">
-						<i class="material-icons icon-set020">cancel</i>14,000원
-						<div class="btn-group item-count" role="group"
-							aria-label="Basic example">
-							<button class="bt bt01 up">-</button>
-							<button class="bt bt-count">1</button>
-							<button class="bt bt02 down">+</button>
-						</div>
-					</div>
-					<p class="item-list-section item-list-section01">양념 치킨</p>
-					<div class="item-list-section item-list-section02">
-						<i class="material-icons icon-set02">cancel</i>16,000원
-						<div class="btn-group item-count" role="group"
-							aria-label="Basic example">
-							<button class="bt bt01 up">-</button>
-							<button class="bt bt-count">1</button>
-							<button class="bt bt02 down">+</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="basket-sum">
-				<p>
-					<strong>합계 : 30,000원</strong>
-				</p>
-			</div>
-			<div class="pay-btn">
-				<button type="button" class="btn btn-outline-success btn-set01"
-					data-toggle="modal" data-target="#exampleModal">결제하기</button>
-			</div>
-		</div>
-		<!-- Modal -->
-		<!--             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Pay Section</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <h5>배달정보</h5>
-                    <p class="pay-position">서울특별시 송파구 방이동 44-2</p>
-                    <div class="input-group input-group-sm mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">전화번호</span>
-                      </div>
-                      <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                    </div>
-                    <div class="input-group input-group-sm mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">배달시 요청사항</span>
-                      </div>
-                      <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                    </div>
-                    
-                    <h5>결제금액</h5>
-                    <div class="alert alert-info" role="alert">
-                      30,000원 <span class="alert-second">주문금액 30,000원</span>
-                    </div>
-                    
-                    <div class="input-group mb-3">
-                      <select class="custom-select" id="inputGroupSelect01">
-                        <option selected>Choose...</option>
-                        <option value="1">카카오페이</option>
-                        <option value="2">네이버페이</option>
-                        <option value="3">배민페이</option>
-                        <option value="4">배민페이 계좌이체</option>
-                        <option value="5">카드결제</option>
-                        <option value="6">휴대폰결제</option>
-                        <option value="7">페이코</option>
-                      </select>
-                    </div>
-                    
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
-                    <button type="button" class="btn btn-success">주문하기</button>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-		<!-- Modal End -->
-
 
 	</section>
 
-
-
 	<%@ include file="/inc/copyright.html"%>
 
-
 	<script>
-
+	
 		function count(type) {
 			// 결과를 표시할 element
 			const resultElement = document.getElementById('result');
@@ -776,21 +682,69 @@ legend {
 		
 		$('#address').val('${address}');
 		
+		// 메뉴 클릭시 모달에 메뉴의 상세정보, 추가옵션을 출력하기 위한 함수
+		$(document).on("click", ".menu", function () {
+			
+			var shopSeq = $(this).data('shopseq');
+			var menuSeq = $(this).data('menuseq');
+			
+			$('#menu_seq').val(menuSeq);
+		
+			$.ajax({
+			    url: '${contextPath}/yumyum/shop_menu.do',
+			    method: 'POST',
+			    dataType: 'json',
+			    data: { seq: shopSeq, menuseq: menuSeq },
+			    success : function (result) {
+			    	
+			    	$("#modal-menuinfo").html("");
+			    	
+			    	$(result).each(function(index, item) {	    		
+						$("#modal-menuinfo").append("<div class='menu_picture'>" + item.picture + "</div><div class='menu_name'>" + item.name + item.price + "원</div><div class='menu_explanation'>" + item.explanation + "</div>");
+			    	});
+			    	
+			    },
+			    error: function (request, error) {
+			        alert("fail");
+			    }
+			});
+			
+			$.ajax({
+			    url: '${contextPath}/yumyum/shop_menuoption.do',
+			    method: 'POST',
+			    dataType: 'json',
+			    data: { seq: shopSeq, menuseq: menuSeq },
+			    success : function (result) {
+			    	
+			    	$("#test tbody").html("");
+			    	
+			    	$(result).each(function(index, item) {	    		
+						$("#test tbody").append("<tr><td><label><input type='radio' name='chk_info' value='" + item.seq + "'>" + item.name + "</label></td><td>" + item.price + "원</td></tr>");
+			    	});
+			    	
+			    	$('#orderModal').modal('show');
+			    },
+			    error: function (request, error) {
+			        alert("fail");
+			    }
+			});
+			
+		});
+		
+		// 장바구니 담기 전 로그인 유무 체크
+		function check() {
+
+			var menu_option_seq = $("input[name='chk_info']:checked").val();
+			$('#menu_option_seq').val(menu_option_seq);
+			
+			if (${empty seq}) {
+				// $('#cartModal').modal('show');
+				alert("로그인 이후에 이용해주세요.");
+				location.href='/yumyum/auth/login.do';
+				return false;
+			}
+		}
+
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

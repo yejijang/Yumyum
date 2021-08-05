@@ -45,7 +45,14 @@ public class LoginOk extends HttpServlet {
 			session.setAttribute("name", result.getName());
 			session.setAttribute("auth", result.getAuth());
 			
-			resp.sendRedirect("/yumyum/main.do");
+			if(result.getAuth().equals("C")) {
+				resp.sendRedirect("/yumyum/main.do");
+			}else if(result.getAuth().equals("O")) {
+				resp.sendRedirect("/yumyum/owner/owner_main.do");
+			}else if(result.getAuth().equals("A")) {
+				resp.sendRedirect("/yumyum/admin/admin_main.do");
+			}
+			
 		} else {
 			// 실패했을 경우 alert창 뜨게하기!!!
 			PrintWriter writer = resp.getWriter();
