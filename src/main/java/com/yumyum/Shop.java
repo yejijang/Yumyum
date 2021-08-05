@@ -38,8 +38,13 @@ public class Shop extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String seq = req.getParameter("seq");
+<<<<<<< HEAD
 		String address = req.getParameter("address");
 		String menuseq = req.getParameter("menuseq");
+=======
+		String address = req.getParameter("address");
+		String menuseq = req.getParameter("menuseq");
+>>>>>>> refs/remotes/origin/master
 
 		ShopDAO dao1 = new ShopDAO();
 		Review_noticeDAO dao2 = new Review_noticeDAO();
@@ -94,7 +99,11 @@ public class Shop extends HttpServlet {
 		req.setAttribute("omlist", omlist);
 		
 		req.setAttribute("address", address);
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> refs/remotes/origin/master
 		req.setAttribute("menuseq", menuseq);
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/yumyum/shop.jsp");
