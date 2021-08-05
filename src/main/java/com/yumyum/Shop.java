@@ -95,6 +95,8 @@ public class Shop extends HttpServlet {
 		
 		req.setAttribute("address", address);
 		
+//		System.out.println(omlist);
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/yumyum/shop.jsp");
 		dispatcher.forward(req, resp);
 

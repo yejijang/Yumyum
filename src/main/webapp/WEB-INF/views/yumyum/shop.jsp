@@ -393,7 +393,7 @@ legend {
 
 .menugroup .hide {
 	display: none;
-	
+
 }
 
 .ordermenu {
@@ -447,11 +447,11 @@ legend {
 					</p>
 					<P class="item-exp">${shopdto.explanation}</p>
 					<p class="item-score">
-						<i class="material-icons item-icon">star_rate</i>
+						<i class="material-icoempty m-icon">star_rate</i>
 						<c:if test="${empty rvlist}">
 							<strong class="pblack">0</strong>
 						</c:if>
-						<c:forEach items="${rvlist}" var="dto" begin="0" end="0">
+						<c:forEach	items="${rvlist}" var="dto" begin="0" end="0">
 							<c:if test="${not empty dto.avg}">
 								<strong class="pblack">${dto.avg}</strong>
 							</c:if>
