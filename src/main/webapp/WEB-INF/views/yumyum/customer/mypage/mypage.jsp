@@ -9,7 +9,7 @@
 <title>yumyum</title>
 
 <%@ include file="/inc/asset.jsp" %>
-<script src="/myapp/asset/js/highcharts.js"></script>
+<script src="/yumyum/asset/js/highcharts.js"></script>
 
 <style>
 
