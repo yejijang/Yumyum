@@ -39,6 +39,7 @@ public class Shop extends HttpServlet {
 		
 		String seq = req.getParameter("seq");
 		String address = req.getParameter("address");
+		String menuseq = req.getParameter("menuseq");
 
 		ShopDAO dao1 = new ShopDAO();
 		Review_noticeDAO dao2 = new Review_noticeDAO();
@@ -50,7 +51,6 @@ public class Shop extends HttpServlet {
 		MenuDAO dao8 = new MenuDAO();
 		Review_commentDAO dao9 = new Review_commentDAO();
 		OrderlistDAO dao10 = new OrderlistDAO();
-		
 
 		//가게의 이름,전화번호,설명,최소배달팁,가게주소,사업자등록번호를 받아온다.
 		ShopDTO shopdto = dao1.getShop(seq);
@@ -94,12 +94,12 @@ public class Shop extends HttpServlet {
 		req.setAttribute("omlist", omlist);
 		
 		req.setAttribute("address", address);
-		
-//		System.out.println(omlist);
-		
+
+		req.setAttribute("menuseq", menuseq);
+
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/yumyum/shop.jsp");
 		dispatcher.forward(req, resp);
 
 	}
-
+	
 }

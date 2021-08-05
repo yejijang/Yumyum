@@ -453,7 +453,7 @@ legend {
 					</p>
 					<P class="item-exp">${shopdto.explanation}</p>
 					<p class="item-score">
-						<i class="material-icoempty m-icon">star_rate</i>
+						<i class="material-icons item-icon">star_rate</i>
 						<c:if test="${empty rvlist}">
 							<strong class="pblack">0</strong>
 						</c:if>

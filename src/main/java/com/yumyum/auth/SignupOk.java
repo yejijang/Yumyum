@@ -37,7 +37,7 @@ public class SignupOk extends HttpServlet {
 		}
 
 		if (result == 1) {
-			resp.sendRedirect("/yumyum/main.do");
+			resp.sendRedirect("/yumyum/auth/login.do");
 		} else {
 			resp.sendRedirect("/yumyum/auth/signup.do");
 		}

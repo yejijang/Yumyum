@@ -31,6 +31,10 @@ table {
 	background-color: RGBA(247,239,184, 0.3);
 }
 
+table .trNull {
+	height: 140px;
+}
+
 table .tr1 {
 	height: 30px;
 }
@@ -96,9 +100,26 @@ table td img {
 	object-fit: contain;
 }
 
+.modal {
+    text-align: center;
+}
+
+@media screen and (min-width: 768px) { 
+	.modal:before {
+	    display: inline-block;
+	    vertical-align: middle;
+	    content: " ";
+	    height: 100%;
+	}
+}
+
 .modal-dialog {
 	width: 400px;
+	display: inline-block;
+    text-align: left;
+    vertical-align: middle;
 }
+
 
 .modal-body {
 	height: 100px;
@@ -148,6 +169,11 @@ table td img {
 				</ul>
 				<div class="tab-content col-md-9 content-size">
 					<table>
+						<c:if test="${empty orderList}">
+							<tr class="trNull">
+								<td>주문내역이 존재하지 않습니다.</td>
+							</tr>
+						</c:if>
 						<c:forEach items="${orderList}" var="dto">
 							<tr class="tr1">
 								<td>

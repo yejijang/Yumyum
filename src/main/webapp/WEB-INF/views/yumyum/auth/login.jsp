@@ -1,35 +1,3 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>yumyum</title>
-
-<%@ include file="/inc/asset.jsp" %>
-
-<style>
-   
-</style>
-
-</head>
-<body>
-   
-   <%@ include file="/inc/header.jsp" %>
-   
-   <section class="main-section">
-      
-      <h1>login page</h1>
-      
-   </section>   
-   
-   <%@ include file="/inc/copyright.html" %>
-   
-   <script>
-      
-   </script>
-</body>
-</html> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -141,7 +109,7 @@ input {
 				id="findid" value="아이디 찾기" style="width: 90px;"> 
 				<input type="button" class="btn" onclick="location.href='/yumyum/auth/findpw.do';"
 				id="findpw" value="비밀번호 찾기" style="width: 100px;"> 
-				<input type="button" class="btn" onclick="location.href='/yumyum/auth/signup.do';"
+				<input type="button" class="btn" onclick="location.href='/yumyum/auth/auth_select.do';"
 				id="signup" value="회원가입" style="width: 70px;">
 			</div>
 
