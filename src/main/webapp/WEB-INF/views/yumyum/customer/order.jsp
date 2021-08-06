@@ -56,13 +56,17 @@ form input.form-control {
 	color: white;
 }
 
-form .btns .btn-signup {
+form .btns .btn-order {
 	background-color: #9DAB86;
 	color: white;
 }
 
-form .btns .btn-signup:hover {
+form .btns .btn-order:hover {
 	background-color: #62760C;
+}
+
+form .btns .btn {
+	width: 180px;
 }
 
 #sale .form-control {
@@ -198,9 +202,9 @@ fieldset legend {
 			</fieldset>
 			
 			<div class="btns">
-				<button type="submit" class="btn btn-signup">가입하기</button>
 				<button type="button" class="btn btn-default"
-					onclick="location.href='/yumyum/auth/auth_select.do';">돌아가기</button>
+					onclick="location.href='/yumyum/cart.do';">목록으로</button>
+				<button type="submit" class="btn btn-order">주문하기</button>
 			</div>
 
 			<input type="hidden" name="auth" value="${auth}">
@@ -283,9 +287,6 @@ fieldset legend {
 			});
 		});
 
-		
-
-		
 	</script>
 
 </body>
