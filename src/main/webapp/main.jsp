@@ -30,7 +30,7 @@
 #wrap > div {
     width:250px;
     height:220px;
-    border:2px solid #333;
+    border:0px solid #333;
     /* border-radius: 1em; */
     float:left;
     margin: 25px 30px;
