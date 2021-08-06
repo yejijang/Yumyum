@@ -64,5 +64,39 @@ public class Review_menuDAO {
 		return null;
 	}
 	
-	
+	// 주문에서 리뷰이벤트 목록 출력
+	public ArrayList<Review_menuDTO> getOrderRevMenu(String seq) {
+		
+		try {
+			
+			String sql = "SELECT RM.SEQ, RM.NAME\n"
+						+ "FROM REVIEW_MENU RM\n"
+						+ "LEFT OUTER JOIN REVIEW_NOTICE RN ON RN.SEQ = RM.REVIEW_NOTICE_SEQ\n"
+						+ "WHERE RN.SHOP_SEQ = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			rs = pstat.executeQuery();
+			
+			ArrayList<Review_menuDTO> list = new ArrayList<Review_menuDTO>();
+			
+			while(rs.next()) {
+				
+				Review_menuDTO dto = new Review_menuDTO();
+				
+				dto.setSeq(rs.getString("seq"));
+				dto.setName(rs.getString("name"));
+				
+				list.add(dto);
+			}
+			
+			return list;
+			
+		} catch (Exception e) {
+			System.out.println("Review_menuDAO.getOrderRevMenu()");
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

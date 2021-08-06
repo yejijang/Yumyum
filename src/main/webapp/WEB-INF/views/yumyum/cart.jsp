@@ -19,6 +19,9 @@
 
 .shop:hover {
 	background-color: #FAFBA4;
+}
+
+.shop-name {
 	cursor: pointer;
 }
 
@@ -109,8 +112,9 @@
 		<div>
 			<c:forEach items="${shoplist}" var="shop">
 				<div class="shop">
-					<div class="shop-name"><i class="glyphicon glyphicon-home"></i>${shop.name}</div>
-
+					<div class="shop-name" onclick="location.href='/yumyum/customer/order.do?seq=${shop.seq}';">
+						<i class="glyphicon glyphicon-home"></i>${shop.name}
+					</div>
 					<table class="table">
 						<tr>
 							<th>메뉴</th>

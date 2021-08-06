@@ -150,5 +150,29 @@ public class ShopDAO {
 		return null;
 	}
 	
+	public int getShopTip(String seq) {
+		try {
+
+			String sql = "SELECT TIP FROM SHOP WHERE SEQ = ?";
+
+			pstat = conn.prepareStatement(sql);
+
+			pstat.setString(1, seq);
+
+			rs = pstat.executeQuery();
+
+			if (rs.next()) {
+
+				int result = Integer.parseInt(rs.getString("tip"));
+				return result;
+			}
+
+		} catch (Exception e) {
+			System.out.println("ShopDTO.getShopTip()");
+			e.printStackTrace();
+		}
+
+		return 0;
+	}
 	
 }

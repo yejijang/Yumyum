@@ -70,4 +70,44 @@ public class Customer_couponDAO {
 		return null;
 	}
 	
+	//Order(주문페이지)에서 seq를 넘겨 받아 사용 가능 쿠폰을 조회한다.
+	public ArrayList<Customer_couponDTO> getOrderCouponList(String seq) {
+		
+		try {
+			
+			String sql = "SELECT CC.SEQ, CC.USERS_SEQ, CC.COUPON_SEQ, CC.USE, C.NAME, C.PRICE\n"
+						+ "FROM CUSTOMER_COUPON CC\n"
+						+ "LEFT OUTER JOIN COUPON C ON C.SEQ = CC.COUPON_SEQ\n"
+						+ "WHERE CC.USERS_SEQ = ? AND CC.USE = 'N'";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			
+			rs = pstat.executeQuery();
+			
+			ArrayList<Customer_couponDTO> list = new ArrayList<Customer_couponDTO>();
+			
+			while(rs.next()) {
+				
+				Customer_couponDTO dto = new Customer_couponDTO();
+				dto.setSeq(rs.getString("seq"));
+				dto.setUsers_seq(rs.getString("users_seq"));
+				dto.setCoupon_seq(rs.getString("coupon_seq"));
+				dto.setUse(rs.getString("use"));
+				dto.setName(rs.getString("name"));
+				dto.setPrice(rs.getString("price"));
+				
+				list.add(dto);
+			}
+			
+			return list;
+			
+		} catch (Exception e) {
+			System.out.println("Customer_couponDAO.getOrderCouponList()");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 }

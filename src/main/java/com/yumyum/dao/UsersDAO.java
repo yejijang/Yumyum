@@ -341,4 +341,39 @@ public class UsersDAO {
 		return null;
 	}
 	
+	public UsersDTO getUserInfo(String seq) {
+		
+		try {
+			
+			String sql = "SELECT SEQ, NICKNAME, NAME, ID, EMAIL, PASSWORD, PHONE, AUTH, POINT FROM USERS WHERE SEQ = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			
+			rs = pstat.executeQuery();
+
+			if (rs.next()) {
+
+				UsersDTO dto = new UsersDTO();
+
+				dto.setSeq(rs.getString("seq"));
+				dto.setNickname(rs.getString("nickname"));
+				dto.setId(rs.getString("id"));
+				dto.setEmail(rs.getString("email"));
+				dto.setPassword(rs.getString("password"));
+				dto.setPhone(rs.getString("phone"));
+				dto.setAuth(rs.getString("auth"));
+				dto.setPoint(rs.getString("point"));
+
+				return dto;
+			}
+			
+		} catch (Exception e) {
+			System.out.println("UsersDAO.getUserInfo()");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 }

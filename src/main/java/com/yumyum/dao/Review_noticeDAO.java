@@ -62,5 +62,32 @@ public class Review_noticeDAO {
 		return null;
 	}
 	
+	// 주문에서 리뷰이벤트 진행유무 체크
+	public int checkRevNotice(String seq) {
+		
+		try {
+			
+			String sql = "SELECT COUNT(*) AS EXIST\n"
+						+ "FROM REVIEW_NOTICE\n"
+						+ "WHERE SHOP_SEQ = ? AND END_DATE >= SYSDATE";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			rs = pstat.executeQuery();
+			
+			if (rs.next()) {
+			
+				int result = rs.getInt("exist");
+				
+				return result;
+			}
+			
+		} catch (Exception e) {
+			System.out.println("Review_noticeDAO.checkRevNotice()");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
 	
 }
