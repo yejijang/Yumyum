@@ -89,10 +89,10 @@
 				<div class="btn-auth"
 					onclick="location.href='/yumyum/auth/logout.do';" title="로그아웃">로그아웃</div>
 				<c:if test="${auth eq 'C'}">
-					<i class="glyphicon glyphicon-shopping-cart"
+					<i class="glyphicon glyphicon-shopping-cart" style="cursor: pointer;"
 						onclick="location.href='/yumyum/cart.do';"></i>
 				</c:if>
-				<i class="glyphicon glyphicon-user"
+				<i class="glyphicon glyphicon-user" style="cursor: pointer;"
 					onclick="location.href='/yumyum/customer/mypage/mypage.do';"></i>
 			</c:if>
 				
@@ -101,8 +101,6 @@
 					onclick="location.href='/yumyum/auth/login.do';" title="로그인">로그인</div>
 				<div class="btn-auth"
 					onclick="location.href='/yumyum/auth/auth_select.do';" title="회원가입">회원가입</div>
-				<i class="glyphicon glyphicon-shopping-cart"
-					onclick="location.href='/yumyum/cart.do';"></i>
 			</c:if>
 			
 		</div>
