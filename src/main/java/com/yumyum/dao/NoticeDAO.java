@@ -59,7 +59,7 @@ public class NoticeDAO {
 					+ "        ORDER BY REGDATE DESC\r\n"
 					+ "    ) a\r\n"
 					+ ") WHERE RNUM BETWEEN %s AND %s", where, map.get("begin"), map.get("end"));
-System.out.println(sql);
+
 			pstat = conn.prepareStatement(sql);
 
 			rs = pstat.executeQuery();
