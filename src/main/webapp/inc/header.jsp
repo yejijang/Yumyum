@@ -72,10 +72,11 @@
 						<li class="mainbtn"
 							onclick="location.href='/yumyum/admin/event/eventlist.do';"
 							title="eventlist" id="/yumyum/admin/event/eventlist.do">이벤트관리</li>
-						<li class="mainbtn"
+						<li class="mainbtn"  style="width:150px;"
 							onclick="location.href='/yumyum/admin/question/questionlist.do';"
-							title="questionlist" id="/yumyum/admin/question/questionlist.do">자주묻는질문관리</li>
-						<li class="mainbtn"
+							title="questionlist" id="/yumyum/admin/question/questionlist.do">
+							자주묻는질문관리</li>
+						<li class="mainbtn"  style="width:100px;"
 							onclick="location.href='/yumyum/admin/notice/noticelist.do';"
 							title="noticelist" id="/yumyum/admin/notice/noticelist.do">공지사항관리</li>
 					</ul>
@@ -88,10 +89,10 @@
 				<div class="btn-auth"
 					onclick="location.href='/yumyum/auth/logout.do';" title="로그아웃">로그아웃</div>
 				<c:if test="${auth eq 'C'}">
-					<i class="glyphicon glyphicon-shopping-cart"
+					<i class="glyphicon glyphicon-shopping-cart" style="cursor: pointer;"
 						onclick="location.href='/yumyum/cart.do';"></i>
 				</c:if>
-				<i class="glyphicon glyphicon-user"
+				<i class="glyphicon glyphicon-user" style="cursor: pointer;"
 					onclick="location.href='/yumyum/customer/mypage/mypage.do';"></i>
 			</c:if>
 				
@@ -100,8 +101,6 @@
 					onclick="location.href='/yumyum/auth/login.do';" title="로그인">로그인</div>
 				<div class="btn-auth"
 					onclick="location.href='/yumyum/auth/auth_select.do';" title="회원가입">회원가입</div>
-				<i class="glyphicon glyphicon-shopping-cart"
-					onclick="location.href='/yumyum/cart.do';"></i>
 			</c:if>
 			
 		</div>

@@ -9,7 +9,9 @@ import java.util.HashMap;
 
 import com.yumyum.CheckLocation;
 import com.yumyum.DBUtil;
+import com.yumyum.dto.CategoryDTO;
 import com.yumyum.dto.ShopDTO;
+import com.yumyum.dto.UsersDTO;
 
 public class ShopDAO {
 
@@ -148,6 +150,99 @@ public class ShopDAO {
 		}
 		
 		return null;
+	}
+
+	//Shop_add(가게 입점 신청)에서 카테고리를 select 박스로 보여 준다.
+	public ArrayList<CategoryDTO> getCategoryList() {
+
+		try {
+			
+			String sql = "SELECT * FROM CATEGORY ORDER BY SEQ";
+			
+			stat = conn.createStatement();
+			rs = stat.executeQuery(sql);
+			
+			ArrayList<CategoryDTO> list = new ArrayList<CategoryDTO>();
+			
+			while(rs.next()) {
+			
+				CategoryDTO dto = new CategoryDTO();
+				
+				dto.setSeq(rs.getString("seq"));
+				dto.setName(rs.getString("name"));
+				dto.setIcon(rs.getString("icon"));
+				
+				list.add(dto);
+				
+			}
+			
+			return list;
+			
+		} catch (Exception e) {
+			System.out.println("ShopDAO.getCategoryList()");
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	public int addShop(ShopDTO dto) {
+
+		try {
+			
+			String sql = "insert into shop(seq, users_seq, category_seq, name, phone, address, registration, file1, file2, regdate) "
+					+ "values (seq_shop.nextVal, ?, ?, ?, ?, ?, ?, ?, ?, sysdate)";
+			
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, dto.getUsers_seq());
+			pstat.setString(2, dto.getCategory_seq());
+			pstat.setString(3, dto.getName());
+			pstat.setString(4, dto.getPhone());
+			pstat.setString(5, dto.getAddress());
+			pstat.setString(6, dto.getRegistration());
+			pstat.setString(7, dto.getFile1());
+			pstat.setString(8, dto.getFile2());
+			
+			return pstat.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			System.out.println("ShopDAO.addShop()");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	public ShopDTO getAuth(String users_seq) {
+
+		try {
+			
+			String sql = "select * from shop where users_seq = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, users_seq);
+			
+			rs = pstat.executeQuery();
+			
+			if(rs.next()) {
+				
+				ShopDTO dto = new ShopDTO();
+				
+				dto.setAuth(rs.getString("auth"));
+				
+				return dto;
+			}
+			
+		} catch (Exception e) {
+			System.out.println("ShopDAO.getAuth()");
+			e.printStackTrace();
+		}
+
+		return null;
+		
 	}
 	
 	public int getShopTip(String seq) {

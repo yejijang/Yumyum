@@ -19,7 +19,7 @@
 	
 	
 	<div class="container">
-		<h1 class="page-header"></h1>
+		<h1 class="page-header">주문 관리 페이지입니다.</h1>
 	</div>
 	
 	
