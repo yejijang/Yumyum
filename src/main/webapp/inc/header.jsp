@@ -18,9 +18,22 @@
 </script>
 <header class="main-header">
 	<section>
-		<span id="main_logo" onclick="location.href='/yumyum/main.do';">
+		<span id="main_logo" onclick="location.href=
+		<c:choose>
+			<c:when test="${empty id||auth eq 'C'}">
+				'/yumyum/main.do'
+			</c:when>
+			<c:when test="${auth eq 'O'}">
+				'/yumyum/owner/owner_main.do'
+			</c:when>
+			<c:otherwise>
+				'/yumyum/admin/admin_main.do'
+			</c:otherwise>
+		</c:choose>
+		;">
 			<img src="/yumyum/images/logo.png" style="cursor: pointer;">
 		</span>
+		
 		<nav>
 			<c:if test="${empty id||auth eq 'C'}">
 				<ul>
@@ -103,9 +116,9 @@
 				<c:if test="${auth eq 'C'}">
 					<i class="glyphicon glyphicon-shopping-cart" style="cursor: pointer;"
 						onclick="location.href='/yumyum/cart.do';"></i>
+					<i class="glyphicon glyphicon-user" style="cursor: pointer;"
+						onclick="location.href='/yumyum/customer/mypage/mypage.do';"></i>
 				</c:if>
-				<i class="glyphicon glyphicon-user" style="cursor: pointer;"
-					onclick="location.href='/yumyum/customer/mypage/mypage.do';"></i>
 			</c:if>
 				
 			<c:if test="${empty id}">

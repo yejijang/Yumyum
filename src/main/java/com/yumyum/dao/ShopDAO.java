@@ -133,12 +133,7 @@ public class ShopDAO {
 					//5km 이내에 있는 가게들만 리스트에 담는다.
 					if(distance <= 5) {
 						list.add(dto);
-					} else {
-						System.out.println(rs.getString("name"));
-						System.out.println(distance);
-						System.out.println();
 					}
-					
 				}
 			}
 			

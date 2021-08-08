@@ -383,7 +383,6 @@ legend {
 .modal-body .menu_picture {
 	width: 200px;
 	height: 200px;
-	border: 1px solid black;
 	margin: 0 auto;
 	margin-bottom: 20px;
 	text-align: center;
@@ -500,7 +499,12 @@ legend {
 												<li class="menu" data-shopseq="${shopdto.seq}" data-menuseq="${dto2.seq}"><a class="list-group-item" id="menuoption"> ${dto2.name}&nbsp;&nbsp; 
 													<span class="pset01">${dto2.price}원</span>
 														<span class="food-image-set">
-														<img src="/yumyum/images/menu/${dto2.picture}" width="80">
+														<c:if test="${empty dto2.picture}">
+															<img src="/yumyum/images/logo.png" width="80">
+														</c:if>
+														<c:if test="${not empty dto2.picture}">
+															<img src="/yumyum/images/menu/${dto2.picture}" width="80">
+														</c:if>
 														</span>
 												</a></li>
 											</c:if>
@@ -707,10 +711,15 @@ legend {
 			    dataType: 'json',
 			    data: { seq: shopSeq, menuseq: menuSeq },
 			    success : function (result) {
-			    	
+
 			    	$("#modal-menuinfo").html("");
 			    	
-			    	$(result).each(function(index, item) {	    		
+			    	$(result).each(function(index, item) {	 
+			    		
+			    		if(item.picture == 0) {
+			    			item.picture = 'logo.png';
+			    		}
+			    		
 						$("#modal-menuinfo").append("<div class='menu_picture'><img src='/yumyum/images/menu/" + item.picture + "'></div><div class='menu_name'>" + item.name + item.price + "원</div><div class='menu_explanation'>" + item.explanation + "</div>");
 			    	});
 			    	
