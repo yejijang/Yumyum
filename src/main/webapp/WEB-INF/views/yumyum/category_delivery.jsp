@@ -74,7 +74,7 @@ a:hover {
 </style>
 </head>
 <body>
-	<%@ include file="/inc/header.jsp" %>
+	<%@ include file="/inc/header.jsp"%>
 
     <%@ include file="/inc/location.jsp" %>
 	
