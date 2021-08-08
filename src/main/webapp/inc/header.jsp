@@ -86,8 +86,18 @@
 		<div class="auth">
 
 			<c:if test="${not empty id}">
+				<c:if test="${auth eq 'C'}">
+				<span>${id}(소비자)&nbsp;</span>
+				</c:if>
+				<c:if test="${auth eq 'O'}">
+				<span>${id}(점주)&nbsp;</span>
+				</c:if>
+				<c:if test="${auth eq 'A'}">
+				<span>${id}(관리자)&nbsp;</span>
+				</c:if>
+				
 				<div class="btn-auth"
-					onclick="location.href='/yumyum/auth/logout.do';" title="로그아웃">로그아웃</div>
+					onclick="location.href='/yumyum/auth/logout.do';" title="로그아웃"> 로그아웃</div>
 				<c:if test="${auth eq 'C'}">
 					<i class="glyphicon glyphicon-shopping-cart" style="cursor: pointer;"
 						onclick="location.href='/yumyum/cart.do';"></i>
