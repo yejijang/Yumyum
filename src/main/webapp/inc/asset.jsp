@@ -8,3 +8,4 @@
 <script src="<%= request.getContextPath() %>/asset/js/common.js"></script>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/asset/css/style.css" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+<link rel="icon" href="<%= request.getContextPath() %>/images/favicon.ico" type="image/x-icon">
