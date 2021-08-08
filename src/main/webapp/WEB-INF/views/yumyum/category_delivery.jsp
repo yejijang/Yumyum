@@ -71,10 +71,30 @@ a:hover {
    color: #818181;
 }
 
+#gps {
+	display: flex;
+	text-align: center;
+	margin: 0px auto;
+	width: 500px;
+}
+
+#gps button {
+	margin-right: 10px;
+}
+
+#gps-icon {
+	vertical-align: middle;
+	color: #FF6505;
+}
+
+#address {
+	background-color: #fff;
+}
+
 </style>
 </head>
 <body>
-	<%@ include file="/inc/header.jsp" %>
+	<%@ include file="/inc/header.jsp"%>
 
     <%@ include file="/inc/location.jsp" %>
 	
