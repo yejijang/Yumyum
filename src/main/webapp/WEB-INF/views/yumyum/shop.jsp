@@ -277,11 +277,15 @@ padding-top:-20px;
 }
 .review-stars{
 	float:right;
+	width: 150px;
+	height: 150px;
 }
 
 .review-stars>img {
     top: -4px;
     padding-right:10px;
+    width: 100%;
+    height: 100%;
 }
 .td2 {
 	font-size:10px;
@@ -450,7 +454,7 @@ legend {
 		<div class="item-content-set01" style="display: inline-block;">
 			<div class="item-card row">
 				<div class="item-card-main">
-					<img src="/yumyum/images/외관사진.png">
+					<img src="/yumyum/images/logo.png">
 				</div>
 				<div class="item-card-info">
 					<p class="item-title pblack" style="margin-top: 20px;">
@@ -563,7 +567,9 @@ legend {
 
 							</h4>
 							<p class="review-stars">
-								<img src="${dto.picture}" width="90">
+								<c:if test="${not empty dto.picture}">
+								<img src="/yumyum/images/review/${dto.picture}">
+								</c:if>
 							</p>
 							<p class="review-text">${dto.content}</p>
 							<c:forEach items="${omlist}" var="dto1">
