@@ -28,8 +28,6 @@
 }
 
 </style>
-
-<body>
 	
 	<section class="main-section">
 		
@@ -87,17 +85,16 @@
 			navigator.geolocation.getCurrentPosition(success, error, options);
 		});
 		
+
+		document.getElementById("btnSearchAdr").addEventListener("click", function(){ //주소 검색 버튼을 클릭하면
+			//카카오 지도 발생
+			new daum.Postcode({
+				oncomplete: function(data) { //선택시 입력값 세팅
+					document.getElementById("address").value = data.jibunAddress; // 주소 넣기
+				}
+			}).open();
+		});
 		
-		window.onload = function() {
-			document.getElementById("btnSearchAdr").addEventListener("click", function(){ //주소 검색 버튼을 클릭하면
-				//카카오 지도 발생
-				new daum.Postcode({
-					oncomplete: function(data) { //선택시 입력값 세팅
-						document.getElementById("address").value = data.jibunAddress; // 주소 넣기
-					}
-				}).open();
-			});
-		}
 
 
 	</script>

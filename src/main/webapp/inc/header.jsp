@@ -8,8 +8,10 @@
 		var menu = document.getElementsByClassName('mainbtn');
 
 		for (var i = 0; i < path.length; i++) {
-			if (path == menu[i].id) {
-				menu[i].style.color = "#FDD100";
+			if(menu[i] != null) {
+				if (path == menu[i].id) {
+					menu[i].style.color = "#FDD100";
+				}
 			}
 		}
 	}
